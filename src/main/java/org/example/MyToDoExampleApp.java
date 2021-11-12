@@ -1,49 +1,24 @@
 package org.example;
 
-import com.google.common.collect.ImmutableMap;
-import org.example.command.MenuItemHandler;
 import org.example.command.impl.*;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.Scanner;
+
 
 public class MyToDoExampleApp {
+    private final ItemHandlerCommadContainer itemHandlerCommadContainer = new ItemHandlerCommadContainer();
 
-        public ToDoRepository toDoRepository = new ToDoRepository("C:\\Users\\Tornike\\Desktop\\ProdExpl\\xxxx.txt");
-//public ToDoRepository toDoRepository = new FileToDoRepository("C:\\Users\\Tornike\\Desktop\\ProdExpl\\xxxx.txt");
-//    public ToDoRepository toDoRepository = new InMemoryToDoRepository();
-
-    Map<Integer, MenuItemHandler> commands = ImmutableMap.of(
-            1, new PrintTasksMenuItemHandler(toDoRepository),
-            2, new CreateTaskItemHandler(toDoRepository),
-            3, new AboutAuthorHandler(),
-            4, new DeleteTaskItemHandler(toDoRepository),
-            5, new ExitTaskHandler()
-    );
-
-    public  void toDoWhileWork () throws IOException{
-        while (true){
+    public void run() {
+        while (true) {
             printMenu();
-
             Scanner scanner = new Scanner(System.in);
             System.out.print("Make a choice : ");
-            int x = -1;
-            try {
-                x = scanner.nextInt();
-                MenuItemHandler handler = commands.get(x);
-                if (handler != null) {
-                    handler.handle();
-                } else {
-                    System.err.println("Будьте добры введите корректное число!");
-                }
-            } catch (InputMismatchException e) {
-                System.err.println("You must write numbers");
-            }
+            int x = scanner.nextInt();
+            itemHandlerCommadContainer.execute(x);
         }
     }
 
-
-    public void printMenu(){
+    public void printMenu() {
         System.out.println("Menu");
         System.out.println("-----");
         System.out.println("1.My tasks");

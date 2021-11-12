@@ -8,18 +8,17 @@ import java.util.List;
 import java.util.Scanner;
 
 
-
 public class ToDoRepository {
     private String path;
 
-    public ToDoRepository(String path){
-       this.path=path;
+    public ToDoRepository(String path) {
+        this.path = path;
     }
 
     public List<String> findAll() throws IOException {
         List<String> list = new ArrayList<>();
         File file = new File(path);
-        if(!file.exists()){
+        if (!file.exists()) {
             return list;
         }
         Scanner readerFile = new Scanner(file);

@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException {
         MyToDoExampleApp myToDoExampleApp = new MyToDoExampleApp();
-        myToDoExampleApp.toDoWhileWork();
+        myToDoExampleApp.run();
     }
 }
